@@ -3,8 +3,13 @@ import resolve from '@rollup/plugin-node-resolve';
 import commonjs from '@rollup/plugin-commonjs';
 import livereload from 'rollup-plugin-livereload';
 import { terser } from 'rollup-plugin-terser';
+import alias from '@rollup/plugin-alias';
 
 const production = !process.env.ROLLUP_WATCH;
+
+const jsResolver = resolve({
+	extensions: ['.js', '.svelte']
+});
 
 function serve() {
 	let server;
@@ -54,6 +59,14 @@ export default {
 		resolve({
 			browser: true,
 			dedupe: ['svelte']
+		}),
+		alias({
+			jsResolver,
+			entries: [
+				{
+					find: '@', replacement: './src'
+				}
+			]
 		}),
 		commonjs(),
 
