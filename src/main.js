@@ -1,10 +1,11 @@
 import App from './App.svelte';
+import Basic from './views/Basic.svelte';
 
-const app = new App({
+const app = new Basic({
 	target: document.body,
-	props: {
-		name: 'world'
-	}
+	// props: {
+	// 	name: 'world'
+	// }
 });
 
 export default app;
